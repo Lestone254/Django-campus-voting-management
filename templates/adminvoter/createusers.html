@@ -1,0 +1,15 @@
+{%extends 'adminvoter/base.html'%}
+{%block content%}
+<div class="container my-2">
+	<div class="row justify-content-center">
+		<div class="col-md-4">
+			<div class="alert alert-info">
+				To create Users and send passwords to their emails click bellow!
+			</div>
+			<a href="{%url 'createusers'%}"><button class="btn btn-danger btn-block">
+				Create
+			</button></a>
+		</div>
+	</div>
+</div>
+{%endblock content%}

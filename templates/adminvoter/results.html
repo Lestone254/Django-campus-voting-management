@@ -1,0 +1,141 @@
+{%extends 'adminvoter/base.html'%}
+{%block content%}
+{%load tags%}
+{%load static%}
+      <style type="">
+      @media print{
+        body *{
+          visibility: hidden;
+        }
+        #print-area *{
+          visibility: visible;
+        }
+        .edit *{
+          visibility: hidden;
+        }
+        #print *{
+          visibility: hidden;
+        }
+        #print-area {
+          position: fixed-relative;
+          left: 0px;
+          margin-top: 200px;
+        }
+      }
+    </style>
+<script type="text/javascript">
+function generateRandomColor() {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+</script>
+<style type="text/css">
+  .table-responsive{
+  height:180px; width:100%;
+  overflow-y: auto;
+  border:2px solid #444;
+}.table-responsive:hover{border-color:red;}
+
+table{width:100%;}
+td{padding:2px; background:#eee;}
+</style>
+<script type="text/javascript">
+  var $el = $(".table-responsive");
+function anim() {
+  var st = $el.scrollTop();
+  var sb = $el.prop("scrollHeight")-$el.innerHeight();
+  $el.animate({scrollTop: st<sb/2 ? sb : 0}, 5000, anim);
+}
+function stop(){
+  $el.stop();
+}
+anim();
+$el.hover(stop, anim);
+$( ".card" ).hover(
+  function() {
+    $( this ).addClass( "shadow p-1" );
+  }, function() {
+    $( this ).removeClass( "shadow p-1" );
+  }
+);
+</script>
+<div class="container">
+  <button class="btn rounded-pill btn-primary"  onclick="window.print()" id="print">Print</button>
+  <div class="row justify-content-center" id="print-area">
+    <div class="col-md-10 col-12 my-2">
+      <div class="card">
+        <div class="card-header">
+          {%if error%}
+          <div class="alert alert-warning">
+            {{error}}
+          </div>
+          {%else%}
+          <div class="card-body">
+            <caption>
+              <center><img src="{%static 'images/tsa.jpg'%}" class="img img-responsive" width="80px;"><br>Results for 2021 Elections</center>
+            </caption>
+            <table class="table table-sm table-striped table-bordered table-responsive-sm table-condensed">
+              {%for x in posts|content%}
+              <thead><th colspan="4" class="text-center">{{x.Type}} {{x.Name}}</th></thead>
+              <thead>
+                <th>Position</th>
+                <th>Name</th>
+                <th>RegNo</th>
+                <th>Votes</th>
+              </thead>
+              {%for y in x.contestant_set.all|sort%}
+              <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{y.Individual.FirstName}} {{y.Individual.LastName}}</td>
+                <td>{{y.Individual.RegNo}}</td>
+                <td>{{y.Votes}}</td>
+              </tr>
+              {%endfor%}
+              {%endfor%}
+            </table>
+            <div class="card">
+              <div class="card-header">
+                Election Analysis
+              </div>
+              <div class="card-body mx-0">
+                <div class="row mx-0">
+                  {%for x in posts|content%}
+                  <div class="col-md-6 col-12">
+                    <canvas id="{{x.id}}">
+                      <script type="text/javascript">
+                              new Chart(document.getElementById("{{x.id}}"), {
+                                  type: 'pie',
+                                  data: {
+                                    labels: [{%for y in x.contestant_set.all|sort%} '{{y.Individual.FirstName}} {{y.Individual.LastName}}', {%endfor%}],
+                                    datasets: [{
+                                      label: "Votes",
+                                      backgroundColor: [{%for y in x.contestant_set.all|sort%} generateRandomColor(),{%endfor%}],
+                                      data: [{%for y in x.contestant_set.all|sort%} {{y.Votes}}, {%endfor%}]
+                                    }]
+                                  },
+                                  options: {
+                                    title: {
+                                      display: true,
+                                      text: '{{x.Type}} {{x.Name}}'
+                                    }
+                                  }
+                              });
+                      </script>
+                    </canvas>
+                  </div>
+                  {%endfor%}
+                </div>
+              </div>
+            </div>
+          </div>
+          {%endif%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock content%}

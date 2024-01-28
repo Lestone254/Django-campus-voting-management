@@ -1,0 +1,59 @@
+{%extends 'adminvoter/base.html'%}
+{%block content%}
+<div class="container">
+	<div class="row justify-content-center">
+		<div class="col-md-6 my-2">
+			<table class="table table-striped table-sm table-bordered table-dark table-responsive-sm">
+				<thead>
+					<th>Name</th>
+					<th>Type</th>
+					<th>Delete</th>
+					<th>Edit</th>
+				</thead>
+				<tbody>
+					{%for x in posts%}
+					<tr>
+						<td>{{x.Name}}</td>
+						<td>{{x.Type}}</td>
+						<td><a href="" class="card-link">Delete</a></td>
+						<td><a href="" class="card-link">Edit</a></td>
+					</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+		</div>
+		<div class="col-md-4 col-12 my-2">
+			<div class="alert alert-primary">
+				Add New Post
+			</div>
+			{%if election%}
+			<form method="POST" action="{%url 'addpost'%}">
+				{%csrf_token%}
+				<div class="row">
+					<div class="my-2 col-12">
+						<label>Post Name</label>
+						<input type="text" class="form-control rounded-0" name="name" required="">
+					</div>
+					<div class="my-2 col-12">
+						<label>Post type</label>
+						<select name="type" required="" class="form-control rounded-0">
+							<option value="" selected="" class="form-control rounded-0">Select Type</option>
+							<option value="general" class="form-control rounded-0">General</option>
+							{%for x in schools%}
+							<option value="{{x.Initials}}">{{x.Name}}</option>
+							{%endfor%}
+							<option value="Nominee" class="form-control rounded-0">Nominee</option>
+						</select>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<button class="btn btn-block btn-primary rounded-0">Add</button>
+					</div>
+				</div>
+			</form>
+			{%endif%}
+		</div>
+	</div>
+</div>
+{%endblock content%}

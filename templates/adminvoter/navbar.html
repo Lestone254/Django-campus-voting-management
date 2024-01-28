@@ -1,0 +1,58 @@
+{%load static%}
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: rgb(0, 100, 0);">
+        <a href="#" class="navbar-brand"><b><span class="text-white">Welcome</span><span class="text-light"> {{request.user.username}}</span></b></a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#Menu4">
+            <span class="navbar-toggler-icon"></span>
+        </button>  
+        <div class="collapse navbar-collapse"  id="Menu4">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'index'%}">Dashboard</a>
+                </li>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Voters
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{%url 'addvoter'%}">Add Voter</a>
+                    <a class="dropdown-item" href="{%url 'voterlist'%}">Voter List</a>
+                  </div>
+                </li>
+               <li class="nav-item">
+                    <a class="nav-link" href="{%url 'getusers'%}">Accounts</a>
+                </li> 
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbardrop" data-toggle="dropdown">
+                    Contestants
+                  </a>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{%url 'addcon'%}">Add Contestant</a>
+                    <a class="dropdown-item" href="{%url 'conlist'%}">Contestant List</a>
+                  </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'addschool'%}">Schools</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'newpost'%}">Posts</a>
+                </li> 
+                {%if request.user.is_superuser%}
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'election'%}">Elections</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'adminresults'%}">Results</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'leaders'%}">Leaders</a>
+                </li> 
+                {%endif%}
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'change'%}">Reset</a>
+                </li>  
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'logout'%}">Logout</a>
+                </li> 
+            </ul>
+        </div>
+    </nav>

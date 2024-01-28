@@ -1,0 +1,47 @@
+{%extends 'index/base.html'%}
+{%load static%}
+{%block content%}
+<div class="container my-3">
+	<div class="row justify-content-center">
+		<div class="col-md-4 col-12">
+			<div class="card shadow-sm">
+				<div class="card-body">
+					<div class="text-center bg-light card-header">
+						<b>
+							<h3>Technology Students Association</h3>
+							<p>Voting Center Email Authentication</p>
+						</b>
+					</div>
+					<div class="alert alert-info">
+						Enter Code send to email {{voter.Email}}
+					</div>
+					{%if error%}
+					<div class="alert alert-danger">
+						{{error}}
+					</div>
+					{%endif%}
+					<form method="POST" action="{%url 'checkotp'%}">
+						{%csrf_token%}
+						<input type="hidden" name="user" value={{voter.id}} >
+						<div class="col-12 my-3">
+							<label><b>Enter Code</b></label>
+							<input type="text" placeholder="Enter six letter code" name="code" class="form-control rounded-pill" required="">
+						</div>
+						<div class="col-12 my-3">
+							<label><b>Password</b></label>
+							<input type="password" placeholder="Enter Password" name="password" class="form-control rounded-pill" required="">
+						</div>
+					</div>
+					<div class="card-footer">
+						<div class="col-12 my-2">
+							<div class="d-grid gap-2">
+								<button class="btn btn-primary rounded-0" type="submit">Login</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{%endblock content%}

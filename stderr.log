@@ -1,0 +1,96 @@
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+[UID:1717][27959] Child process with pid: 27986 was killed by signal: 15, core dump: 0
+[UID:1717][37044] Child process with pid: 37339 was killed by signal: 15, core dump: 0
+[UID:1717][37044] Child process with pid: 37518 was killed by signal: 15, core dump: 0
+[UID:1717][37044] Child process with pid: 37889 was killed by signal: 15, core dump: 0
+[UID:1717][37044] Child process with pid: 38016 was killed by signal: 15, core dump: 0
+Traceback (most recent call last):
+  File "/home/tsamoite/public_html/apps/voting/passenger_wsgi.py", line 11, in <module>
+    from django.core.wsgi import get_wsgi_application
+ModuleNotFoundError: No module named 'django'
+[UID:1717][3768] Child process with pid: 3800 was killed by signal: 15, core dump: 0
+Traceback (most recent call last):
+  File "/home/tsamoite/public_html/apps/voting/passenger_wsgi.py", line 11, in <module>
+    from django.core.wsgi import get_wsgi_application
+ModuleNotFoundError: No module named 'django'
+Not Found: /static/js/popper.js
+Traceback (most recent call last):
+  File "/home/tsamoite/public_html/apps/voting/passenger_wsgi.py", line 11, in <module>
+    from django.core.wsgi import get_wsgi_application
+ModuleNotFoundError: No module named 'django'
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+[UID:1717][16957] Child process with pid: 16985 was killed by signal: 15, core dump: 0
+Not Found: /login/
+Not Found: /favicon.ico
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+[UID:1717][37363] Child process with pid: 37390 was killed by signal: 15, core dump: 0
+[UID:1717][37363] Child process with pid: 39442 was killed by signal: 15, core dump: 0
+[UID:1717][37363] Child process with pid: 13303 was killed by signal: 15, core dump: 0
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/Chart.js
+Not Found: /static/js/popper.js
+Not Found: /static/css/style.css
+Not Found: /static/js/Chart.js
+Not Found: /static/css/bootstrap.min.css
+Not Found: /static/js/bootstrap.min.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/jquery.min.js
+Not Found: /static/admin/js/cancel.js
+Not Found: /static/admin/img/search.svg
+Not Found: /static/admin/img/icon-no.svg
+Not Found: /static/admin/img/sorting-icons.svg
+Not Found: /static/admin/js/cancel.js
+Not Found: /static/admin/img/search.svg
+Not Found: /static/admin/img/sorting-icons.svg
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+Not Found: /static/js/popper.js
+[UID:1717][19979] Child process with pid: 20829 was killed by signal: 15, core dump: 0
+Internal Server Error: /administrator/csvadd
+Traceback (most recent call last):
+  File "/home/tsamoite/virtualenv/public_html/apps/voting/3.7/lib/python3.7/site-packages/django/utils/datastructures.py", line 78, in __getitem__
+    list_ = super().__getitem__(key)
+KeyError: 'file'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/tsamoite/virtualenv/public_html/apps/voting/3.7/lib/python3.7/site-packages/django/core/handlers/exception.py", line 34, in inner
+    response = get_response(request)
+  File "/home/tsamoite/virtualenv/public_html/apps/voting/3.7/lib/python3.7/site-packages/django/core/handlers/base.py", line 115, in _get_response
+    response = self.process_exception_by_middleware(e, request)
+  File "/home/tsamoite/virtualenv/public_html/apps/voting/3.7/lib/python3.7/site-packages/django/core/handlers/base.py", line 113, in _get_response
+    response = wrapped_callback(request, *callback_args, **callback_kwargs)
+  File "/home/tsamoite/virtualenv/public_html/apps/voting/3.7/lib/python3.7/site-packages/django/contrib/auth/decorators.py", line 21, in _wrapped_view
+    return view_func(request, *args, **kwargs)
+  File "/home/tsamoite/public_html/apps/voting/useradmin/views.py", line 326, in csvadd
+    file=request.FILES['file']
+  File "/home/tsamoite/virtualenv/public_html/apps/voting/3.7/lib/python3.7/site-packages/django/utils/datastructures.py", line 80, in __getitem__
+    raise MultiValueDictKeyError(key)
+django.utils.datastructures.MultiValueDictKeyError: 'file'
+Not Found: /static/js/popper.js

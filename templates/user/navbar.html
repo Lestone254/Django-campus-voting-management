@@ -1,0 +1,26 @@
+{%load static%}
+    <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: rgb(0, 100, 0);">
+        <a href="#" class="navbar-brand"><b><span class="text-dark">Hello</span><span class="text-dark"> {{request.user.username}}</span></b></a>
+        <button class="navbar-toggler" data-toggle="collapse" data-target="#Menu4">
+            <span class="navbar-toggler-icon"></span>
+        </button>  
+        <div class="collapse navbar-collapse"  id="Menu4">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'index'%}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'userresults'%}">Results</a>
+                </li> 
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'audit'%}">Audit Results</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'index'%}">Leaders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{%url 'change'%}">Reset</a>
+                </li>  
+            </ul>
+        </div>
+    </nav>

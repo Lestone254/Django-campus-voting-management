@@ -1,0 +1,45 @@
+{%extends 'adminvoter/base.html'%}
+{%block content%}
+<div class="container">
+	<div class="row d-flex">
+		<div class="col-md-4 col-12">
+			<div class="card shadow">
+				<div class="card-header text-white bg-info">
+					<b>Change Password</b>
+				</div>
+				<div class="card-body">
+				    {%if error%}
+                    <div class="card-text">
+                        <div class="alert alert-warning">
+                            {{error}}
+                        </div>
+                    </div>
+                    {%endif%}
+				<form method="POST" class="needs-validation my-3">
+					{%csrf_token%}
+					<label>Old Password</label>
+					<input type="password" name="oldpass" class="form-control rounded-pill my-2" required="">
+					<label>New Password</label>
+					<input type="password" name="newpass" class="form-control rounded-pill my-2" id="password" required="">
+					<label>Confirm New Password</label>
+					<input type="password" name="confirm" class="form-control rounded-pill my-2" id="pass2" required=""> 
+					<button class="btn btn-block btn-info rounded-pill" type="submit">Change</button>
+				</form>			
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	    $("#pass2").change(function(e){
+        e.preventDefault();
+        var password1= $("#password").val();
+        var password2= $(this).val();
+        if(password1 !== password2){
+        alert("Error! passwords dont match")
+        document.getElementById("pass2").value="";
+        document.getElementById("password").value="";
+        }
+    });
+</script>
+{%endblock content%}

@@ -1,0 +1,124 @@
+{%extends 'adminvoter/base.html'%}
+{%load tags%}
+{%block content%}
+<div class="container">
+  <div class="row my-3">
+    <div class="col-md-4 col-12 my-2">
+      <div class="card border-primary shadow-sm">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-9 my-1">
+              <b>Election Status</b>
+              {%if open%}
+              <a href="{%url 'close'%}"><button class="btn btn-success rounded-pill text-white">Close Election</button></a>
+              {%endif%}
+              {%if incoming%}
+              <a href="{%url 'open'%}"><button class="btn btn-success rounded-pill text-white">Open Election</button></a>
+              {%endif%}
+            </div>
+            <div class="col-2">
+              <h1><b><i class="bi bi-basket2 text-primary"></i></b></h1>
+            </div>
+          </div>
+          <div class="progress">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 70%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-12 my-2">
+      <div class="card border-danger shadow-sm">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8">
+              <b>Registered Voters</b>
+              <h4><b>{{voters}} </b>Voters</h4>
+            </div>
+            <div class="col-3">
+              <h1><b><i class="bi bi-people text-danger"></i></b></h1>
+            </div>
+          </div>
+          <div class="progress">
+            <div class="progress-bar bg-danger  progress-bar-striped progress-bar-animated" role="progressbar" style="width: 70%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4 col-12 my-2">
+      <div class="card border-warning shadow-sm">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-8">
+              <b>Activated</b>
+              <h4><b>{{voters|activated}} </b>Voters</h4>
+            </div>
+            <div class="col-3">
+              <h1><b><i class="bi bi-person-check text-danger"></i></b></h1>
+            </div>
+          </div>
+          <div class="progress">
+            <div class="progress-bar bg-warning  progress-bar-striped progress-bar-animated" role="progressbar" style="width: 70%" aria-valuenow="10" aria-valuemin="0" aria-valuemax="100"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row my-2">
+    <div class="col-12 bg-white">
+      <div class="card">
+        <div class="card-body">
+          <b>Staff Control Panel</b>
+        </div>
+      </div>
+      <div class="card my-1 border-success">
+        <div class="card-body">
+          <b>Election</b> <br>
+          {%if message%}
+          {{message}}
+          {%endif%}
+        </div>
+      </div>
+    </div>
+    <div class="col-12 bg-white">
+      <div class="card my-1 border-warning">
+        <div class="card-body">
+          <b>Leaders</b> 
+          {%if leaders%}
+          {{leaders}}
+          {%endif%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style type="text/css">
+  .table-responsive{
+  height:180px; width:100%;
+  overflow-y: auto;
+  border:2px solid #444;
+}.table-responsive:hover{border-color:red;}
+
+table{width:100%;}
+td{padding:2px; background:#eee;}
+</style>
+<script type="text/javascript">
+  var $el = $(".table-responsive");
+function anim() {
+  var st = $el.scrollTop();
+  var sb = $el.prop("scrollHeight")-$el.innerHeight();
+  $el.animate({scrollTop: st<sb/2 ? sb : 0}, 5000, anim);
+}
+function stop(){
+  $el.stop();
+}
+anim();
+$el.hover(stop, anim);
+$( ".card" ).hover(
+  function() {
+    $( this ).addClass( "shadow p-1" );
+  }, function() {
+    $( this ).removeClass( "shadow p-1" );
+  }
+);
+</script>
+{%endblock content%}

@@ -1,0 +1,86 @@
+{%extends 'adminvoter/base.html'%}
+{%block content%}
+<div class="container">
+	<div class="row">
+		<div class="col-12 col-md-7">
+			{%if past%}
+			<div class="alert alert-info my-1">
+				Past Election Info
+			</div>
+			<table class="table table-responsive-sm table-bordered">
+				<thead>
+					<th>Number</th>
+					<th>Type</th>
+					<th>Year</th>
+					<th>Start</th>
+					<th>End</th>
+					<th>Status</th>
+				</thead>
+				<tbody>
+					{%for x in past%}
+					<tr>
+						<td>{{forloop.counter}}</td>
+						<td>{{x.Type}}</td>
+						<td>{{x.Year}}</td>
+						<td>{{x.Start}}</td>
+						<td>{{x.End}}</td>
+						<td><span class="badge badge-pill badge-warning">{{x.Status}}</span></td>
+					</tr>
+					{%endfor%}
+				</tbody>
+			</table>
+			{%else%}
+			<div class="alert alert-info">
+				There are no past elections held!
+			</div>
+			{%endif%}
+		</div>
+		<div class="col-12 col-md-4">
+		{%if new%}
+			<div class="card">
+				<div class="card-header">
+					New Election
+				</div>
+				<div class="card-body">
+					<form method="POST">
+						{%csrf_token%}
+						<div class="col-12 my-2">
+							<label>Year</label>
+							<input type="number" class="form-control" name="year" required="">
+						</div>
+						<div class="col-12 my-2">
+							<label>Start</label>
+							<input type="datetime-local" class="form-control" name="start" required="">
+						</div>
+						<div class="col-12 my-2">
+							<label>End</label>
+							<input type="datetime-local" class="form-control" name="end" required="">
+						</div>
+						<div class="col-12 my-2">
+							<label>Select Type</label>
+							<select name="type" class="form-control" required="">
+								<option value="">Choose Type</option>
+								<option value="{{option}}">{{option}}</option>
+							</select>
+						</div>
+						<div class="col-12 my-2">
+							<button class="btn btn-block btn-primary">Add</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		{%else%}
+		{%if noleader%}
+			<div class="alert alert-info">
+				A Nominee Election Can't be held without leaders!... Please approve leaders
+			</div>
+		{%else%}
+			<div class="alert alert-info">
+				You can't add a new election.. Please Close the previous one
+			</div>
+		{%endif%}
+		{%endif%}
+		</div>
+	</div>
+</div>
+{%endblock content%}

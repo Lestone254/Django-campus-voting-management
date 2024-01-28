@@ -1,0 +1,101 @@
+{%extends 'adminvoter/base.html'%}
+{%block content%}
+<div class="container">
+	<div class="row ">
+		<div class="col-12 my-1  col-md-5 my-1">
+			<div class="card border-primary">
+				{%if error%}
+				<div class="card-header">
+					<div class="alert alert-danger">
+						{{error}}
+					</div>
+				</div>
+				{%endif%}
+				{%if voter%}
+				<div class="card-header">
+					<div class="alert alert-primary">
+						<b>{{voter.FirstName}} {{voter.LastName}} Reg No {{voter.RegNo}} {{voter.Number}} {{voter.School}} {{voter.Email}} created successfully!</b>
+					</div>
+				</div>
+				{%endif%}
+				<div class="card-header">
+					Add new voter Manually
+				</div>
+				<div class="card-body">
+					<form method="POST" action="{%url 'addvoter'%}">
+						{%csrf_token%}
+						<div class="row">
+							<div class="col-12 my-1">
+								<label for="regno">Reg No</label>
+								<input type="text" id="regno" name="regno" class="form-control rounded-0" required="">
+							</div>
+							<div class="col-6 my-1">
+								<label for="fname">FirstName</label>
+								<input type="text" id="fname" name="fname" class="form-control rounded-0" required="">
+							</div>
+							<div class="col-6 my-1">
+								<label for="lname">LastName</label>
+								<input type="text" name="lname" id="lname" class="form-control rounded-0" required="">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-12 my-1">
+								<label for="email">Email</label>
+								<input type="email" id="email" name="email" class="form-control rounded-0" required="">
+							</div>
+							<div class="col-12 my-1">
+								<label for="contact">Contact</label>
+								<input type="tel" id="contact" name="contact" class="form-control rounded-0" required="">
+							</div>
+							<div class="col-12 my-1">
+								<label for="school">School</label>
+								<select name="school" class="form-control rounded-0" required="">
+									<option value="" class="form-control">Select School</option>
+									{%for x in schools%}
+									<option value="{{x.Initials}}">{{x.Name}}</option>
+									{%endfor%}
+								</select>
+							</div>
+						</div>
+						<div class="row my-2">
+							<div class="col-12">
+								<button class="btn btn-info btn-block rounded-0">Add Voter</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="col-12 my-1 col-md-5">
+			<div class="card border-success">
+				<div class="card-header">
+					Add Voter From CVS File
+				</div>
+				<div class="card-body">
+					<form method="POST"  enctype="multipart/form-data" action="{%url 'csvadd'%}">
+						{%csrf_token%}
+						<div class="row">
+							<div class="col-12 my-1">
+								<label for="school">School</label>
+								<select name="school" class="form-control rounded-0" required="">
+									<option value="" class="form-control">Select School</option>
+									{%for x in schools%}
+									<option value="{{x.Initials}}">{{x.Name}}</option>
+									{%endfor%}
+								</select>
+							</div>
+							<div class="col-12 my-1">
+								<label for="file">Choose Excel CSV File</label>
+								<input type="file" accept=".csv" name="file" required="">
+							</div>
+							<div class="col-12 my-1">
+								<button type="submit" class="btn btn-block btn-info rounded-0">Add</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{%endblock content%}

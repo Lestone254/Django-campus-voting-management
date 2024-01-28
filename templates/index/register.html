@@ -1,0 +1,56 @@
+{%extends 'index/base.html'%}
+{%load static%}
+{%block content%}
+<div class="container my-3">
+	<div class="row justify-content-center">
+		<div class="col-md-4 col-12">
+			<div class="card shadow-sm">
+				<div class="card-body">
+					<div class="text-center bg-light card-header">
+						<img class="img w-50" src="{%static 'images/tsa.jpg'%}">
+						<b>
+							<h3>Technology Students Association</h3>
+							<p>Voting Center Registration</p>
+						</b>
+					</div>
+					{%if error%}
+					<div class="alert alert-danger">
+						{{error}}
+					</div>
+					{%endif%}
+					<form method="POST" action="{%url 'register'%}">
+						{%csrf_token%}
+						<div class="col-12 my-3">
+							<label><b>Reg No</b></label>
+							<input type="text" placeholder="e.g MPE/1795/20" name="regno" class="form-control rounded-0" required="">
+						</div>
+						<div class="col-12 my-3">
+							<label><b>First Name</b></label>
+							<input type="text" placeholder="e.g John" name="fname" class="form-control rounded-0" required="">
+						</div>
+						<div class="col-12 my-3">
+							<label><b>Last Name</b></label>
+							<input type="text" placeholder="e.g Doe" name="lname" class="form-control rounded-0" required="">
+						</div>
+						<div class="col-12 my-3">
+							<label><b>Email</b></label>
+							<input type="email" placeholder="e.g contact@tsamoi.tech" name="email" class="form-control rounded-0" required="">
+						</div>
+						<div class="col-12 my-3">
+							<label><b>Phone Number</b></label>
+							<input type="tel" placeholder="+254701982578"  name="contact" class="form-control rounded-0" required="">
+						</div>
+					</div>
+					<div class="card-footer">
+						<div class="col-12 my-2">
+							<div class="d-grid gap-2">
+								<button class="btn btn-primary rounded-0" type="submit">Register</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{%endblock content%}

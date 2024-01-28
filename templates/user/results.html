@@ -1,0 +1,46 @@
+{%extends 'user/base.html'%}
+{%block content%}
+{%load tags%}
+{%load static%}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-12 my-2">
+      <div class="card">
+        <div class="card-header">
+          {%if error%}
+          <div class="alert alert-warning">
+            {{error}}
+          </div>
+          {%else%}
+          <div class="card-body">
+            <a href="{%url 'audit'%}"><button class="btn btn-primary rounded-pill">Audit</button></a>
+            <caption>
+              <center><img src="{%static 'images/logo.png'%}" class="img img-responsive" width="80px;"><br>Results for 2021 Elections</center>
+            </caption>
+            <table class="table table-sm table-striped table-bordered table-responsive-sm table-condensed">
+              {%for x in posts|content%}
+              <thead><th colspan="4" class="text-center">{{x.Type}} {{x.Name}}</th></thead>
+              <thead>
+                <th>Position</th>
+                <th>Name</th>
+                <th>RegNo</th>
+                <th>Votes</th>
+              </thead>
+              {%for y in x.contestant_set.all|sort%}
+              <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{y.Individual.FirstName}} {{y.Individual.LastName}}</td>
+                <td>{{y.Individual.RegNo}}</td>
+                <td>{{y.Votes}}</td>
+              </tr>
+              {%endfor%}
+              {%endfor%}
+            </table>
+          </div>
+          {%endif%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock content%}

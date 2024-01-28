@@ -1,0 +1,84 @@
+{%extends 'user/base.html'%}
+{%load tags%}
+{%block content%}
+<div class="container my-2">
+	{%if election%}
+	<center>Welcome to the {{election.Year}} TSA Elections!</center>
+	{%if voted%}
+	<div class="row justify-content-center">
+		<div class="col-md-4 col-12">
+			<div class="alert alert-info">
+				You have already Voted in this election! Check the live results!
+			</div>
+		</div>
+	</div>
+	{%else%}
+	<div class="row justify-content-center">
+		<form class="needs-validation w-100" method="POST" action="{%url 'vote'%}" >
+			{%csrf_token%}
+		<div class="row">
+			{%for x in posts|content%}
+			<div class="col-12 col-md-6 mx-1">
+				<p><b>{{forloop.counter}}.Vote for {{x.Type}} {{x.Name}}</b></p>
+				{%for y in x.contestant_set.all%}
+				<div class="form-check">
+				 <input id="{{y.id}}" class="form-check-input"  type="radio" name="p{{y.Post.id}}" value="{{y.id}}" required="">
+				 <label class="form-check-radio"  for="{{y.id}}">{{y.Individual.FirstName}} {{y.Individual.LastName}} </label>
+				</div>
+				 {%endfor %}
+			</div>
+			{%endfor%}
+		</div>
+		<div class="my-2 col-md-4 col-12">
+			<button class="btn btn-block btn-info rounded-pill">
+				Vote!
+			</button>
+		</div>
+		</form>
+	</div>
+	{%endif%}
+	{%else%}
+	<div class="row justify-content-center">
+		<div class="col-md-4 col-12">
+			<div class="alert alert-info">
+				There is no ongoing election! Check the results!
+			</div>
+		</div>
+	</div>
+	{%endif%}
+	<div class="row justify-content-center">
+		<div class="col-12 col-md-4">
+			<div class="card">
+				<div class="card-header bg-primary">
+					My Personal Data
+				</div>
+				<div class="card-body">
+					<div class="card-text">
+						<b>Reg No: </b> {{voter.RegNo}}<br>
+						<b>Name  : </b> {{voter.FirstName}} {{voter.LastName}}<br>
+						<b>School: </b> {{voter.School}}<br>
+						<b>Email : </b> {{voter.Email}}<br>
+						Eligible to vote...
+						<span class="badge badge-pill badge-success">Yes</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<div class="row">
+	<div class="col-12">
+      <div class="card my-1 border-success">
+        <div class="card-body">
+          <b>How to Vote</b> <br>
+          Welcome to the TSA 2022 Elections !<br>
+          To Vote Please follow this 4 steps..<br>
+          1. Login to the voting portal with the password send to your email..<br>
+          2. If Voting is on choose your prefered candidates and click vote...<br>
+          3. You will receive an email with your unique secret code.<br>
+          4. Once voting is done access results to see who won. To confirm the results are correct click on audit and check for your secret code under the contestant you voted for
+        </div>
+      </div>
+	</div>
+</div>
+</div>
+{%endblock content%}

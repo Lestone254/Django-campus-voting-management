@@ -1,0 +1,58 @@
+{%extends 'user/base.html'%}
+{%block content%}
+{%load tags%}
+{%load static%}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-10 col-12 my-2">
+      <div class="card">
+        <div class="card-header">
+          {%if error%}
+          <div class="alert alert-warning">
+            {{error}}
+          </div>
+          {%else%}
+          <div class="card-body">
+            <caption>
+              <center><img src="{%static 'images/tsa.jpg'%}" class="img img-responsive" width="80px;"><br>Audit for 2022 Elections</center>
+            </caption>
+            <table class="table table-sm table-bordered table-responsive-sm table-condensed">
+              {%for x in posts|content%}
+              <thead><th colspan="4" class="text-center">{{x.Name}}</th></thead>
+              <thead>
+                <th>Position</th>
+                <th>Name</th>
+                <th>RegNo</th>
+                <th>Votes</th>
+              </thead>
+              {%for y in x.contestant_set.all|sort%}
+              <thead>
+                <th>{{forloop.counter}}</th>
+                <th>{{y.Individual.FirstName}} {{y.Individual.LastName}}</th>
+                <th>{{y.Individual.RegNo}}</th>
+                <th>{{y.Votes}}</th>
+              </thead>
+              <tr><td colspan="4"><center>Secret Keys...</center></td></tr>
+              <thead>
+                <th>Number</th>
+                <th>Key</th>
+                <th>Date</th>
+              </thead>
+              {%for vote in y.vote_set.all%}
+              <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{vote.Key}}</td>
+                <td>{{vote.Date}}</td>
+              </tr>
+              {%endfor%}
+              {%endfor%}
+              {%endfor%}
+            </table>
+          </div>
+          {%endif%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{%endblock content%}

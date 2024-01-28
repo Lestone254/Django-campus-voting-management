@@ -1,0 +1,42 @@
+{%extends 'adminvoter/base.html'%}
+{%block content%}
+<div class="container my-2">
+	<div class="row justify-content-center">
+		<div class="col-md-4">
+			<div class="card">
+				<div class="card-header bg-light">
+					Add New Contestant
+					{%if error%}
+					<div class="alert alert-danger">
+						{{error}}
+					</div>
+					{%endif%}
+				</div>
+				<div class="card-body">
+					<form method="POST" action="{%url 'addcon'%}" enctype="multipart/form-data">
+						{%csrf_token%}
+						<div class="row">
+							<div class="col-12 my-1">
+								<label>Reg No</label>
+								<input type="text" name="regno" class="form-control rounded-0" required="">
+							</div>
+							<div class="col-12 my-1">
+								<label>Post</label>
+								<select name="post" class="form-control rounded-0">
+									<option value="" class="form-control rounded-0">Select Post</option>
+									{%for x in posts%}
+									<option value="{{x.id}}">{{x.Type}} {{x.Name}}</option>
+									{%endfor%}
+								</select>
+							</div>
+							<div class="col-12 my-1">
+								<button class="btn btn-block btn-primary">Add</button>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+{%endblock content%}

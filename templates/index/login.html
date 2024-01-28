@@ -1,0 +1,44 @@
+{%extends 'index/base.html'%}
+{%load static%}
+{%block content%}
+<div class="container my-3">
+	<div class="row justify-content-center">
+		<div class="col-md-4 col-12">
+			<div class="card shadow-sm">
+				<div class="card-body">
+					<div class="text-center bg-light card-header">
+						<img class="img w-50" src="{%static 'images/tsa.jpg'%}">
+						<b>
+							<h3>Technology Students Association</h3>
+							<p>Voting Center</p>
+						</b>
+					</div>
+					{%if error%}
+					<div class="alert alert-danger">
+						{{error}}
+					</div>
+					{%endif%}
+					<form method="POST" action="{%url 'enter'%}">
+						{%csrf_token%}
+						<div class="col-12 my-3">
+							<label><b>Reg No</b></label>
+							<input type="text" placeholder="e.g MPE/1795/20" name="username" class="form-control rounded-0" required="">
+						</div>
+						<div class="col-12 my-3">
+							<label><b>Password</b></label>
+							<input type="password" placeholder="Password" name="password" class="form-control rounded-0" required="">
+						</div>
+					</div>
+					<div class="card-footer">
+						<div class="col-12 my-2">
+							<div class="d-grid gap-2">
+								<button class="btn btn-primary rounded-0" type="submit">Login</button>
+							</div>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+{%endblock content%}
